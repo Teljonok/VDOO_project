@@ -1,0 +1,19 @@
+<div class="tabs-wrapper">
+  <div *ngIf="nodata" class="empty"> No Products Data </div>
+  <div class="main-view" *ngIf="!nodata" style="padding: .5em 0 1em 0">
+    <p-button (click)="activeIndex = 0" styleClass="p-button-text" label="{{titlesMap.phones}}"></p-button>
+    <p-button (click)="activeIndex = 1" styleClass="p-button-text" label="{{titlesMap.cars}}" [style]="{'margin-left': '.5em'}"></p-button>
+    <p-button (click)="activeIndex = 2" styleClass="p-button-text" label="{{titlesMap.laptops}}" [style]="{'margin-left': '.5em'}"></p-button>
+  </div>
+  <p-tabView [(activeIndex)]="activeIndex">
+    <p-tabPanel>
+      <app-product [data] = phones></app-product>
+    </p-tabPanel>
+    <p-tabPanel>
+      <app-product [data]="cars"></app-product>
+    </p-tabPanel>
+    <p-tabPanel>
+      <app-product [data]="laptops"></app-product>
+    </p-tabPanel>
+  </p-tabView>
+</div>

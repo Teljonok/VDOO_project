@@ -1,0 +1,33 @@
+<div class="product-wrapper">
+  <div class="product-wrapper-table">
+    <p-table #tableRef [value]="data"
+             [scrollable]="true"
+             [globalFilterFields]="['name','vendor']"
+             [filterDelay]="0">
+      <ng-template pTemplate="header">
+        <div class="product-table-header">
+          <div class="product-table-search">
+            <i class="product-table-search-icon pi pi-search"></i>
+            <input pInputText type="text" (input)="tableRef.filterGlobal($event.target.value, 'contains')" placeholder=" Search" />
+          </div>
+        </div>
+        <tr>
+          <th *ngFor="let col of cols" [pSortableColumn]="col.field" class="product-table-column">
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-data>
+        <tr>
+          <td *ngFor="let col of cols" class="product-table-item">
+            <span *ngIf="col.field === 'price'"> {{data[col.field] | currency}}</span>
+            <span *ngIf="col.field !== 'price'">{{data[col.field] }} </span>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+
